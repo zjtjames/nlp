@@ -1,3 +1,5 @@
 *.xls
 *.pdf
 .idea/
+hotel.model
+wiki.zh.vector.bin
