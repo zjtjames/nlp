@@ -4,14 +4,14 @@
 
 import pandas as pd
 
-xls_file = pd.ExcelFile("../comments.xls")
+xls_file = pd.ExcelFile("preprocessed.xls")
 sn = xls_file.sheet_names[0]
 # 得到DataFrame
 table = xls_file.parse(sn)
 score_list = table['score']
 bi_score_list = []
 for score in score_list:
-    if score >= 3.0:
+    if score > 3.0:
         bi_score_list.append(1)
     else:
         bi_score_list.append(0)
