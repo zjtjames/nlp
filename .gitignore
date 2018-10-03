@@ -3,3 +3,4 @@
 .idea/
 hotel.model
 wiki.zh.vector.bin
+*.h5
