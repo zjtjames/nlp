@@ -11,6 +11,7 @@ import pickle
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 
 
@@ -78,6 +79,8 @@ class Hotel(object):
             the_model = LinearSVC(max_iter=self.max_iter)
         elif model_type == 'mlp':
             the_model = MLPClassifier(max_iter=self.max_iter)
+        elif model_type == 'rf':
+            the_model = RandomForestClassifier(max_depth=self.max_iter)
         the_model.fit(x, y)
         self.save(the_model, save_name)
 
@@ -113,14 +116,15 @@ if __name__ == '__main__':
     train_label = hotel.load_label('train_label.txt')
     # hotel.train(train_text_vec, train_label, 'SVM', model_type='svm')
     # hotel.train(train_text_vec, train_label, 'logistic', model_type='logistic')
-    hotel.train(train_text_vec, train_label, 'MLP', model_type='mlp')
+    # hotel.train(train_text_vec, train_label, 'MLP', model_type='mlp')
+    hotel.train(train_text_vec, train_label, 'RF', model_type='rf')
 
     # 测试
     test_text = hotel.load_txt('test_text.txt')
     test_vec = hotel.get_text_word2vec(test_text, word2vec_model)
     test_label = hotel.load_label('test_label.txt')
     # 输入加载模型的名字
-    class_model = hotel.load('MLP')
+    class_model = hotel.load('RF')
     pred = hotel.pred(class_model, test_vec)  # 判断是否异常
     accuracy = hotel.evaluation(pred, test_label)
     print('test accuracy: %.3f' % accuracy)
