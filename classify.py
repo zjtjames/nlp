@@ -14,7 +14,6 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import RandomForestClassifier
 
 
-
 class Hotel(object):
 
     def __init__(self, data_dir, save_dir, max_iter=5000, model_type="mlp"):
@@ -117,14 +116,14 @@ if __name__ == '__main__':
     # hotel.train(train_text_vec, train_label, 'SVM', model_type='svm')
     # hotel.train(train_text_vec, train_label, 'logistic', model_type='logistic')
     # hotel.train(train_text_vec, train_label, 'MLP', model_type='mlp')
-    hotel.train(train_text_vec, train_label, 'RF', model_type='rf')
+    # hotel.train(train_text_vec, train_label, 'RF', model_type='rf')
 
     # 测试
     test_text = hotel.load_txt('test_text.txt')
     test_vec = hotel.get_text_word2vec(test_text, word2vec_model)
     test_label = hotel.load_label('test_label.txt')
     # 输入加载模型的名字
-    class_model = hotel.load('RF')
+    class_model = hotel.load('rf')
     pred = hotel.pred(class_model, test_vec)  # 判断是否异常
     accuracy = hotel.evaluation(pred, test_label)
     print('test accuracy: %.3f' % accuracy)

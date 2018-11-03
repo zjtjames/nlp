@@ -26,12 +26,12 @@ def seg_sentence(sentence, stopwords):
 if __name__ == '__main__':
     # 得到停用词的list
     stopword = stopwordslist("stopwords.txt")
-    xls_file = pd.ExcelFile("preprocessed.xls")
+    xls_file = pd.ExcelFile("preprocessed1.xls")
     sn = xls_file.sheet_names[0]
     # 得到DataFrame
     table = xls_file.parse(sn)
     content_list = table['content']
-    with open('segmented.txt', 'w') as f:
+    with open('segmented1.txt', 'w') as f:
         for line in content_list:
             line_seg = seg_sentence(line, stopword)
             f.write(line_seg + '\n')
