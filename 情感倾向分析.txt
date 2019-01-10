@@ -1,0 +1,10 @@
+数量：
+positive 29544
+negative 5901
+neutral 1670
+all 37115
+
+比例：
+positive（积极情绪） 0.796
+negative（消极情绪） 0.159
+neutral（中性情绪） 0.045
