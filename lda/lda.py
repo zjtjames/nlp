@@ -14,8 +14,10 @@ with open('../pre/segmented0.txt', 'r', encoding='utf-8') as f:
     corpus = [dict.doc2bow(text) for text in data_list]
     tfidf = models.TfidfModel(corpus) #统计tfidf
     corpus_tfidf = tfidf[corpus]  #得到每个文本的tfidf向量，稀疏矩阵
-    ldamodel = models.LdaModel(corpus_tfidf, id2word=dict, num_topics=6)
-    print(ldamodel.print_topics(num_topics=6, num_words=10))
+    ldamodel = models.LdaModel(corpus_tfidf, id2word=dict, num_topics=5)
+    print(ldamodel.print_topics(num_topics=5, num_words=10))
+
+
 
 
 

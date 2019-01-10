@@ -54,7 +54,8 @@ if __name__ == '__main__':
     # dictionary_path = middatafolder + 'dictionary.dictionary'
     # corpus_path = middatafolder + 'corpus.mm'
     # ldamodel_path = middatafolder + 'lda.model'
-    with open('../pre/segmented.txt', 'r', encoding='utf-8') as f:
+    # with open('../pre/segmented.txt', 'r', encoding='utf-8') as f:
+    with open('../pre/segmented0.txt', 'r', encoding='utf-8') as f:
         data_list = []
     # 构造词典向量
         for line in f.readlines():
@@ -63,10 +64,10 @@ if __name__ == '__main__':
     corpus = [dict.doc2bow(text) for text in data_list]
     tfidf = models.TfidfModel(corpus) #统计tfidf
     corpus_tfidf = tfidf[corpus]  #得到每个文本的tfidf向量，稀疏矩阵
-    ldamodel = models.LdaModel(corpus_tfidf, id2word=dict, num_topics=13)
-    num_topics = 13
+    ldamodel = models.LdaModel(corpus_tfidf, id2word=dict, num_topics=8)
+    num_topics = 8
     testset = []
     # sample 1/300
-    for i in range(int(len(corpus)/300)):
-        testset.append(corpus[i*300])
+    for i in range(int(len(corpus)/5)):
+        testset.append(corpus[i*5])
     prep = perplexity(ldamodel, testset, dict, len(dict.keys()), num_topics)
